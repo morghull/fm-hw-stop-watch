@@ -8,8 +8,7 @@ class StopWatch extends Component {
       time: new Date(0, 0, 0, 0, 0, 0, 0),
     };
     this.timeoutId = null;
-    this.isStoped = false;
-    this.timerStep = 1000;
+    this.timerDelay = 1000;
   }
   tick = () => {
     clearTimeout(this.timeoutId);
@@ -22,14 +21,13 @@ class StopWatch extends Component {
 
     this.timeoutId = setTimeout(() => {
       this.tick();
-    }, this.timerStep);
+    }, this.timerDelay);
   };
   start = () => {
-
-    if (!this.timeoutId && !this.isStoped) {
+    if (!this.timeoutId) {
       this.timeoutId = setTimeout(() => {
         this.tick();
-      }, this.timerStep);
+      }, this.timerDelay);
     }
   };
   stop = () => {
