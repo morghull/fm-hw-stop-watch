@@ -18,10 +18,6 @@ class StopWatch extends Component {
       const newTime = new Date(time.getTime() + 1000);
       return { time: newTime };
     });
-
-    this.timeoutId = setTimeout(() => {
-      this.tick();
-    }, this.timerDelay);
   };
   start = () => {
     if (!this.timeoutId) {
@@ -41,7 +37,11 @@ class StopWatch extends Component {
   componentDidMount() {
     this.start();
   }
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    this.timeoutId = setTimeout(() => {
+      this.tick();
+    }, this.timerDelay);
+  }
   componentWillUnmount() {
     clearTimeout(this.timeoutId);
     this.timeoutId = null;
